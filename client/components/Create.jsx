@@ -46,7 +46,7 @@ const StyledInput = styled('input')({
   borderRadius: '6px',
   fontSize: '14px',
   transition: 'border-color 0.3s ease',
-  background: 'gray',
+  background: 'black',
   '&:focus': {
     borderColor: '#007bff',
     outline: 'none',

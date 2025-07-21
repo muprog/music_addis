@@ -38,7 +38,7 @@ const Input = styled.input`
   padding: 0.75rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  background: gray;
+  background: black;
 `
 
 const ReadOnlyInput = styled(Input)`

@@ -77,7 +77,6 @@ router.put(
         year: req.body.year,
       }
 
-      // If new file is uploaded, use it
       if (req.files?.audio?.[0]) {
         update.audio = req.files.audio[0].filename
       } else if (req.body.existingAudio) {

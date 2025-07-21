@@ -51,6 +51,10 @@ const StyledInput = styled('input')({
     borderColor: '#007bff',
     outline: 'none',
   },
+  '::-webkit-calendar-picker-indicator': {
+    filter: 'invert(1)',
+    cursor: 'pointer',
+  },
 })
 
 const StyledButton = styled('button')((props) => ({

@@ -39,6 +39,10 @@ const Input = styled.input`
   border-radius: 6px;
   border: 1px solid #ccc;
   background: black;
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
 `
 
 const ReadOnlyInput = styled(Input)`

@@ -20,6 +20,7 @@ const CancelButton = styled.button`
   }
 `
 const Container = styled.div`
+  color: white;
   padding: 2rem;
   max-width: 600px;
   margin: auto;
@@ -36,6 +37,7 @@ const Input = styled.input`
   padding: 0.75rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  opacity: 0.5;
 `
 
 const ReadOnlyInput = styled(Input)`

@@ -23,6 +23,7 @@ const Container = styled.div`
   padding: 2rem;
   max-width: 600px;
   margin: auto;
+  background: black;
 `
 
 const Form = styled.form`

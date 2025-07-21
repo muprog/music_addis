@@ -1,148 +1,3 @@
-// import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { useParams, useNavigate } from 'react-router-dom'
-// import {
-//   updateSongStart,
-//   fetchSongsStart,
-// } from '../src/features/songs/songSlice'
-// import styled from '@emotion/styled'
-
-// const Container = styled.div`
-//   padding: 2rem;
-//   max-width: 600px;
-//   margin: auto;
-// `
-
-// const Form = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// `
-
-// const Input = styled.input`
-//   padding: 0.75rem;
-//   border-radius: 6px;
-//   border: 1px solid #ccc;
-// `
-
-// const Button = styled.button`
-//   background-color: #1890ff;
-//   color: white;
-//   padding: 0.75rem;
-//   border: none;
-//   border-radius: 6px;
-//   cursor: pointer;
-//   font-weight: bold;
-//   margin-top: 1rem;
-// `
-
-// const Update = () => {
-//   const { id } = useParams()
-//   const dispatch = useDispatch()
-//   const navigate = useNavigate()
-
-//   const { songs } = useSelector((state) => state.songs)
-
-//   const [formData, setFormData] = useState({
-//     title: '',
-//     artist: '',
-//     genre: '',
-//     album: '',
-//     year: '',
-//     coverImage: '',
-//     audio: '',
-//   })
-
-//   useEffect(() => {
-//     if (songs.length === 0) {
-//       dispatch(fetchSongsStart())
-//     } else {
-//       const songToEdit = songs.find((song) => song._id === id)
-//       if (songToEdit) {
-//         setFormData({
-//           title: songToEdit.title || '',
-//           artist: songToEdit.artist || '',
-//           genre: songToEdit.genre || '',
-//           album: songToEdit.album || '',
-//           year: new Date(songToEdit.year).toISOString().split('T')[0],
-//           coverImage: songToEdit.coverImage || '',
-//           audio: songToEdit.audio || '',
-//         })
-//       }
-//     }
-//   }, [id, songs, dispatch])
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]: value,
-//     }))
-//   }
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault()
-//     dispatch(updateSongStart({ id, songData: formData }))
-//     navigate('/edit') // Go back to edit page
-//   }
-
-//   return (
-//     <Container>
-//       <h2>Update Song</h2>
-//       <Form onSubmit={handleSubmit}>
-//         <Input
-//           name='title'
-//           value={formData.title}
-//           onChange={handleChange}
-//           placeholder='Title'
-//           required
-//         />
-//         <Input
-//           name='artist'
-//           value={formData.artist}
-//           onChange={handleChange}
-//           placeholder='Artist'
-//           required
-//         />
-//         <Input
-//           name='genre'
-//           value={formData.genre}
-//           onChange={handleChange}
-//           placeholder='Genre'
-//         />
-//         <Input
-//           name='album'
-//           value={formData.album}
-//           onChange={handleChange}
-//           placeholder='Album'
-//         />
-//         <Input
-//           name='year'
-//           type='date'
-//           value={formData.year}
-//           onChange={handleChange}
-//           placeholder='Year'
-//         />
-//         <Input
-//           name='coverImage'
-//           value={formData.coverImage}
-//           onChange={handleChange}
-//           placeholder='Cover Image URL'
-//         />
-//         <Input
-//           name='audio'
-//           value={formData.audio}
-//           onChange={handleChange}
-//           placeholder='Audio URL'
-//         />
-//         <Button type='submit'>Update Song</Button>
-//       </Form>
-//     </Container>
-//   )
-// }
-
-// export default Update
-
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -262,7 +117,7 @@ const Update = () => {
     if (type === 'file') {
       setFormData((prev) => ({
         ...prev,
-        [name + 'File']: files[0] || null, // coverImageFile or audioFile
+        [name + 'File']: files[0] || null,
       }))
     } else {
       setFormData((prev) => ({
@@ -272,32 +127,6 @@ const Update = () => {
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-
-  //   const data = new FormData()
-
-  //   data.append('title', formData.title)
-  //   data.append('artist', formData.artist)
-  //   data.append('genre', formData.genre)
-  //   data.append('album', formData.album)
-  //   data.append('year', formData.year)
-
-  //   if (formData.coverImageFile) {
-  //     data.append('coverImage', formData.coverImageFile)
-  //   } else {
-  //     data.append('coverImage', formData.coverImage)
-  //   }
-
-  //   if (formData.audioFile) {
-  //     data.append('audio', formData.audioFile)
-  //   } else {
-  //     data.append('audio', formData.audio)
-  //   }
-
-  //   dispatch(updateSongStart({ id, songData: data }))
-  //   navigate('/edit')
-  // }
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -366,7 +195,11 @@ const Update = () => {
         <Label>Current Cover Image</Label>
         {formData.coverImage && (
           <PreviewImage
-            src={`http://localhost:5000/uploads/coverImages/${formData.coverImage}`}
+            src={`${
+              process.env.BACKEND_URI
+                ? process.env.BACKEND_URI
+                : 'http://localhost:5000'
+            }/uploads/coverImages/${formData.coverImage}`}
             alt='cover'
           />
         )}
@@ -378,12 +211,15 @@ const Update = () => {
           onChange={handleChange}
         />
 
-        {/* Audio Preview and Upload */}
         <Label>Current Audio</Label>
         {formData.audio && (
           <AudioPreview controls>
             <source
-              src={`http://localhost:5000/uploads/audios/${formData.audio}`}
+              src={`${
+                process.env.BACKEND_URI
+                  ? process.env.BACKEND_URI
+                  : 'http://localhost:5000'
+              }/uploads/audios/${formData.audio}`}
               type='audio/mpeg'
             />
             Your browser does not support the audio element.

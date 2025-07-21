@@ -45,35 +45,7 @@ function* deleteSongSaga(action) {
     yield put(deleteSongFailure(error.message))
   }
 }
-// function* updateSongSaga(action) {
-//   try {
-//     const { id, songData } = action.payload
-//     const res = yield call(() =>
-//       axios.put(`/songs/${id}`, songData, {
-//         headers: { 'Content-Type': 'multipart/form-data' },
-//       })
-//     )
-//     yield put(updateSongSuccess(res.data))
-//   } catch (error) {
-//     yield put(updateSongFailure(error.message))
-//   }
-// }
-// function* updateSongSaga(action) {
-//   try {
-//     const { id, songData } = action.payload
 
-//     const res = yield call(axios.put, `/songs/${id}`, songData, {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     })
-
-//     yield put(updateSongSuccess(res.data))
-//   } catch (error) {
-//     yield put(updateSongFailure(error.message))
-//   }
-// }
-// In your updateSongSaga.js
 function* updateSongSaga(action) {
   try {
     const { id, songData } = action.payload

@@ -93,7 +93,11 @@ export default function HomePage() {
             <CoverImage
               src={
                 song.coverImage
-                  ? `http://localhost:5000/uploads/coverImages/${song.coverImage.replace(
+                  ? `${
+                      process.env.BACKEND_URI
+                        ? process.env.BACKEND_URI
+                        : 'http://localhost:5000'
+                    }/uploads/coverImages/${song.coverImage.replace(
                       /\\/g,
                       '/'
                     )}`
@@ -112,10 +116,11 @@ export default function HomePage() {
               <source
                 src={
                   song.audio
-                    ? `http://localhost:5000/uploads/audios/${song.audio.replace(
-                        /\\/g,
-                        '/'
-                      )}`
+                    ? `${
+                        process.env.BACKEND_URI
+                          ? process.env.BACKEND_URI
+                          : 'http://localhost:5000'
+                      }/uploads/audios/${song.audio.replace(/\\/g, '/')}`
                     : ''
                 }
                 type='audio/mpeg'
@@ -134,7 +139,11 @@ export default function HomePage() {
           <img
             src={
               fullScreenSong.coverImage
-                ? `http://localhost:5000/uploads/coverImages/${fullScreenSong.coverImage.replace(
+                ? `${
+                    process.env.BACKEND_URI
+                      ? process.env.BACKEND_URI
+                      : 'http://localhost:5000'
+                  }/uploads/coverImages/${fullScreenSong.coverImage.replace(
                     /\\/g,
                     '/'
                   )}`
@@ -149,10 +158,11 @@ export default function HomePage() {
             style={{ marginTop: '1rem' }}
             src={
               fullScreenSong.audio
-                ? `http://localhost:5000/uploads/audios/${fullScreenSong.audio.replace(
-                    /\\/g,
-                    '/'
-                  )}`
+                ? `${
+                    process.env.BACKEND_URI
+                      ? process.env.BACKEND_URI
+                      : 'http://localhost:5000'
+                  }/uploads/audios/${fullScreenSong.audio.replace(/\\/g, '/')}`
                 : ''
             }
           />

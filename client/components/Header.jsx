@@ -1,3 +1,4 @@
+import musicIcon from '../public/images/music.png'
 import React from 'react'
 import styled from '@emotion/styled'
 import { useTheme } from '@emotion/react'
@@ -38,7 +39,7 @@ export default function Header() {
     <HeaderWrapper>
       <HeaderOuterDive>
         <div style={{}}>
-          <HeaderImage src='/images/music.png' alt='Music Addis' />
+          <HeaderImage src={musicIcon} alt='Music Addis' />
         </div>
         <div>Music Addis</div>
       </HeaderOuterDive>

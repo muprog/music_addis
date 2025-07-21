@@ -34,10 +34,11 @@ const Form = styled.form`
 `
 
 const Input = styled.input`
+  color: white;
   padding: 0.75rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  opacity: 0.5;
+  background: transparent;
 `
 
 const ReadOnlyInput = styled(Input)`

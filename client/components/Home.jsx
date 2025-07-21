@@ -96,7 +96,7 @@ export default function HomePage() {
                   ? `${
                       process.env.REACT_APP_BACKEND_URI
                         ? process.env.REACT_APP_BACKEND_URI
-                        : 'http://localhost:5000'
+                        : 'https://backend-music-addis.onrender.com'
                     }/uploads/coverImages/${song.coverImage.replace(
                       /\\/g,
                       '/'
@@ -119,7 +119,7 @@ export default function HomePage() {
                     ? `${
                         process.env.REACT_APP_BACKEND_URI
                           ? process.env.REACT_APP_BACKEND_URI
-                          : 'http://localhost:5000'
+                          : 'https://backend-music-addis.onrender.com'
                       }/uploads/audios/${song.audio.replace(/\\/g, '/')}`
                     : ''
                 }
@@ -142,7 +142,7 @@ export default function HomePage() {
                 ? `${
                     process.env.REACT_APP_BACKEND_URI
                       ? process.env.REACT_APP_BACKEND_URI
-                      : 'http://localhost:5000'
+                      : 'https://backend-music-addis.onrender.com'
                   }/uploads/coverImages/${fullScreenSong.coverImage.replace(
                     /\\/g,
                     '/'
@@ -161,7 +161,7 @@ export default function HomePage() {
                 ? `${
                     process.env.REACT_APP_BACKEND_URI
                       ? process.env.REACT_APP_BACKEND_URI
-                      : 'http://localhost:5000'
+                      : 'https://backend-music-addis.onrender.com'
                   }/uploads/audios/${fullScreenSong.audio.replace(/\\/g, '/')}`
                 : ''
             }

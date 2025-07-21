@@ -1,7 +1,10 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URI || 'http://localhost:5000',
+  baseURL:
+    process.env.REACT_APP_BACKEND_URI ||
+    'https://backend-music-addis.onrender.com',
+  // baseURL: process.env.REACT_APP_BACKEND_URI || 'http://localhost:5000',
   withCredentials: true,
 })
 

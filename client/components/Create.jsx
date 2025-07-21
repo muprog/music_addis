@@ -35,9 +35,11 @@ const Title = styled('div')({
 
 const InputGroup = styled('div')({
   marginBottom: '15px',
+  color: 'white',
 })
 
 const StyledInput = styled('input')({
+  color: 'white',
   width: '100%',
   padding: '10px',
   border: '1px solid #ccc',

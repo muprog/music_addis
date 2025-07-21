@@ -198,7 +198,7 @@ const Update = () => {
             src={`${
               process.env.REACT_APP_BACKEND_URI
                 ? process.env.REACT_APP_BACKEND_URI
-                : 'http://localhost:5000'
+                : 'https://backend-music-addis.onrender.com'
             }/uploads/coverImages/${formData.coverImage}`}
             alt='cover'
           />
@@ -218,7 +218,7 @@ const Update = () => {
               src={`${
                 process.env.REACT_APP_BACKEND_URI
                   ? process.env.REACT_APP_BACKEND_URI
-                  : 'http://localhost:5000'
+                  : 'https://backend-music-addis.onrender.com'
               }/uploads/audios/${formData.audio}`}
               type='audio/mpeg'
             />

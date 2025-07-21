@@ -6,8 +6,6 @@ import Create from '../components/Create'
 import Edit from '../components/Edit'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Update from '../components/Update'
-// axios.defaults.baseURL = 'http://localhost:5000'
-// axios.defaults.withCredentials = true
 const App = () => {
   return (
     <Router>

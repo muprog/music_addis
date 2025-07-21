@@ -17,7 +17,7 @@ app.use(
   '/uploads',
   express.static(path.join(__dirname, '..', 'public/uploads'))
 )
-app.use(express.json())
+// app.use(express.json())
 app.use('/', require('./routes/route'))
 mongoose
   .connect(process.env.MONGO_URL)

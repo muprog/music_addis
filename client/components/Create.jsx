@@ -188,17 +188,18 @@ import {
   resetSongCreated,
 } from '../src/features/songs/songSlice'
 
-const OuterBox = styled('div')({
+const OuterBox = styled('div')((props) => ({
   width: '100%',
   height: '100vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-})
+  backgroundColor: props.theme.colors.surface,
+}))
 
 const InnerBox = styled('div')({
   border: '1px solid gray',
-  backgroundColor: 'white',
+  backgroundColor: 'black',
   width: '320px',
   padding: '30px 35px',
   borderRadius: '10px',
@@ -224,6 +225,7 @@ const StyledInput = styled('input')({
   borderRadius: '6px',
   fontSize: '14px',
   transition: 'border-color 0.3s ease',
+  background: 'transparent',
   '&:focus': {
     borderColor: '#007bff',
     outline: 'none',
@@ -257,7 +259,7 @@ const FileLabel = styled('label')({
   fontSize: '14px',
   color: '#6c757d',
   cursor: 'pointer',
-  backgroundColor: '#fdfdfd',
+  backgroundColor: 'transparent',
 })
 
 export default function Create() {

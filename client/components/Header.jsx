@@ -10,7 +10,7 @@ const HeaderWrapper = styled('div')((props) => ({
   display: 'flex',
   color: 'white',
   justifyContent: 'space-between',
-  background: props.theme.colors.surface,
+  background: props.theme.colors.background,
 }))
 
 const HeaderOuterDive = styled('div')((props) => ({

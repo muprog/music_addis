@@ -275,7 +275,6 @@ const Update = () => {
   // const handleSubmit = (e) => {
   //   e.preventDefault()
 
-  //   // Prepare FormData for multipart upload
   //   const data = new FormData()
 
   //   data.append('title', formData.title)
@@ -284,7 +283,6 @@ const Update = () => {
   //   data.append('album', formData.album)
   //   data.append('year', formData.year)
 
-  //   // Append file only if user uploaded new one; else keep old URL in formData for backend
   //   if (formData.coverImageFile) {
   //     data.append('coverImage', formData.coverImageFile)
   //   } else {
@@ -298,55 +296,34 @@ const Update = () => {
   //   }
 
   //   dispatch(updateSongStart({ id, songData: data }))
-
-  //   navigate('/edit')
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-
-  //   const data = new FormData()
-
-  //   data.append('title', formData.title)
-  //   data.append('artist', formData.artist)
-  //   data.append('genre', formData.genre)
-  //   data.append('album', formData.album)
-  //   data.append('year', formData.year)
-
-  //   if (formData.coverImageFile) {
-  //     data.append('coverImage', formData.coverImageFile)
-  //   }
-
-  //   if (formData.audioFile) {
-  //     data.append('audio', formData.audioFile)
-  //   }
-
-  //   dispatch(updateSongStart({ id, songData: data }))
   //   navigate('/edit')
   // }
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(
-      updateSongStart({
-        id,
-        songData: {
-          title: formData.title,
-          artist: formData.artist,
-          genre: formData.genre,
-          album: formData.album,
-          year: formData.year,
-          coverImage: formData.coverImage, // old filename
-          audio: formData.audio, // old filename
-          coverImageFile: formData.coverImageFile, // new file if selected
-          audioFile: formData.audioFile, // new file if selected
-        },
-      })
-    )
+    const data = new FormData()
 
+    data.append('title', formData.title)
+    data.append('artist', formData.artist)
+    data.append('genre', formData.genre)
+    data.append('album', formData.album)
+    data.append('year', formData.year)
+
+    if (formData.coverImageFile) {
+      data.append('coverImage', formData.coverImageFile)
+    } else if (formData.coverImage) {
+      data.append('existingCoverImage', formData.coverImage)
+    }
+
+    if (formData.audioFile) {
+      data.append('audio', formData.audioFile)
+    } else if (formData.audio) {
+      data.append('existingAudio', formData.audio)
+    }
+
+    dispatch(updateSongStart({ id, songData: data }))
     navigate('/edit')
   }
-
   return (
     <Container>
       <h2>Update Song</h2>

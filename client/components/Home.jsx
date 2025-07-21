@@ -2,16 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSongsStart } from '../src/features/songs/songSlice'
 import styled from '@emotion/styled'
+import { useTheme } from '@emotion/react'
 
-const Container = styled.div`
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-`
+const Container = styled('div')((props) => ({
+  padding: '2rem',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+  gap: '2rem',
+  background: props.theme.colors.surface,
+}))
 
 const Card = styled.div`
-  background: #fff;
+  background: black;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -41,8 +43,18 @@ const FullScreen = styled.div`
   flex-direction: column;
   color: white;
 `
+const LoadingDiv = styled('div')((props) => ({
+  height: '100vh',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: props.theme.colors.background,
+  color: 'white',
+}))
 
 export default function HomePage() {
+  const them = useTheme()
   const dispatch = useDispatch()
   const { songs, loading } = useSelector((state) => state.songs)
   const audioRefs = useRef({})
@@ -66,7 +78,12 @@ export default function HomePage() {
     audioRefs.current[id]?.pause()
   }
   if (songs.length > 0) console.log(songs)
-  if (loading) return <p>Loading songs...</p>
+  if (loading)
+    return (
+      <LoadingDiv>
+        <p>Loading songs...</p>
+      </LoadingDiv>
+    )
 
   return (
     <>
@@ -74,10 +91,14 @@ export default function HomePage() {
         {songs.map((song) => (
           <Card key={song._id}>
             <CoverImage
-              src={`http://localhost:5000/uploads/coverImages/${song.coverImage.replace(
-                /\\/g,
-                '/'
-              )}`}
+              src={
+                song.coverImage
+                  ? `http://localhost:5000/uploads/coverImages/${song.coverImage.replace(
+                      /\\/g,
+                      '/'
+                    )}`
+                  : 'https://via.placeholder.com/300x200?text=No+Image'
+              }
               alt={song.title}
             />
             <h3>{song.title}</h3>
@@ -89,10 +110,14 @@ export default function HomePage() {
               onPause={() => handlePause(song._id)}
             >
               <source
-                src={`http://localhost:5000/uploads/audios/${song.audio.replace(
-                  /\\/g,
-                  '/'
-                )}`}
+                src={
+                  song.audio
+                    ? `http://localhost:5000/uploads/audios/${song.audio.replace(
+                        /\\/g,
+                        '/'
+                      )}`
+                    : ''
+                }
                 type='audio/mpeg'
               />
               Your browser does not support the audio element.
@@ -107,10 +132,14 @@ export default function HomePage() {
           <h1>{fullScreenSong.title}</h1>
           <p>{fullScreenSong.artist}</p>
           <img
-            src={`http://localhost:5000/uploads/coverImages/${fullScreenSong.coverImage.replace(
-              /\\/g,
-              '/'
-            )}`}
+            src={
+              fullScreenSong.coverImage
+                ? `http://localhost:5000/uploads/coverImages/${fullScreenSong.coverImage.replace(
+                    /\\/g,
+                    '/'
+                  )}`
+                : 'https://via.placeholder.com/300x200?text=No+Image'
+            }
             alt='cover'
             style={{ width: '300px', borderRadius: '12px' }}
           />
@@ -118,10 +147,14 @@ export default function HomePage() {
             controls
             autoPlay
             style={{ marginTop: '1rem' }}
-            src={`http://localhost:5000/uploads/audios/${fullScreenSong.audio.replace(
-              /\\/g,
-              '/'
-            )}`}
+            src={
+              fullScreenSong.audio
+                ? `http://localhost:5000/uploads/audios/${fullScreenSong.audio.replace(
+                    /\\/g,
+                    '/'
+                  )}`
+                : ''
+            }
           />
           <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
             Click anywhere to close

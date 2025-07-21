@@ -1,79 +1,6 @@
-// import React, { useEffect } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-// import {
-//   fetchSongsStart,
-//   deleteSongStart,
-// } from '../src/features/songs/songSlice'
-// import { Link } from 'react-router-dom'
-
-// const Edit = () => {
-//   const dispatch = useDispatch()
-//   const { songs, loading, error } = useSelector((state) => state.songs)
-
-//   useEffect(() => {
-//     dispatch(fetchSongsStart())
-//   }, [dispatch])
-
-//   const handleDelete = (id) => {
-//     if (window.confirm('Are you sure you want to delete this song?')) {
-//       dispatch(deleteSongStart(id))
-//     }
-//   }
-
-//   return (
-//     <div className='p-6 max-w-4xl mx-auto'>
-//       <h1 className='text-2xl font-bold mb-6 text-center'>Manage Songs</h1>
-
-//       {loading && <p className='text-blue-600'>Loading...</p>}
-//       {error && <p className='text-red-500'>{error}</p>}
-
-//       <table className='w-full border'>
-//         <thead>
-//           <tr className='bg-gray-100'>
-//             <th className='p-2 border'>Cover</th>
-//             <th className='p-2 border'>Title</th>
-//             <th className='p-2 border'>Artist</th>
-//             <th className='p-2 border'>Actions</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {songs.map((song) => (
-//             <tr key={song._id} className='text-center border-t'>
-//               <td className='p-2 border'>
-//                 <img
-//                   src={`http://localhost:5000/uploads/coverImages/${song.coverImage}`}
-//                   alt={song.title}
-//                   className='w-16 h-16 object-cover mx-auto'
-//                 />
-//               </td>
-//               <td className='p-2 border'>{song.title}</td>
-//               <td className='p-2 border'>{song.artist}</td>
-//               <td className='p-2 border'>
-//                 <Link
-//                   to={`/update-song/${song._id}`}
-//                   className='bg-yellow-400 px-3 py-1 rounded mr-2'
-//                 >
-//                   Update
-//                 </Link>
-//                 <button
-//                   onClick={() => handleDelete(song._id)}
-//                   className='bg-red-500 text-white px-3 py-1 rounded'
-//                 >
-//                   Delete
-//                 </button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   )
-// }
-
-// export default Edit
-
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTheme } from '@emotion/react'
 import {
   fetchSongsStart,
   deleteSongStart,
@@ -81,20 +8,23 @@ import {
 import { useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 
-const Container = styled.div`
-  padding: 2rem;
-`
+const Container = styled('div')((props) => ({
+  padding: '2rem',
+  background: props.theme.colors.surface,
+  color: 'white',
+}))
 
-const SongCard = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f9f9f9;
-`
+const SongCard = styled('div')((props) => ({
+  border: '1px solid #ccc',
+  borderRadius: '8px',
+  marginBottom: '1rem',
+  padding: '1rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  background: 'black',
+  color: 'white',
+}))
 
 const SongDetails = styled.div`
   flex: 1;
@@ -125,6 +55,7 @@ const Button = styled.button`
 `
 
 const EditPage = () => {
+  const theme = useTheme()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { songs, loading, error } = useSelector((state) => state.songs)

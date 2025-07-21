@@ -54,16 +54,6 @@ router.get('/songs', async (req, res) => {
     res.status(500).json({ message: 'Error fetching songs' })
   }
 })
-router.put('/songs/:id', async (req, res) => {
-  try {
-    const updated = await Song.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    })
-    res.json(updated)
-  } catch (err) {
-    res.status(400).json({ message: 'Update failed' })
-  }
-})
 
 router.delete('/songs/:id', async (req, res) => {
   try {
@@ -74,25 +64,6 @@ router.delete('/songs/:id', async (req, res) => {
   }
 })
 
-// router.put('/songs/:id', upload.single('coverImage'), async (req, res) => {
-//   try {
-//     const { id } = req.params
-//     const updatedData = {
-//       ...req.body,
-//     }
-
-//     if (req.file) {
-//       updatedData.coverImage = `/uploads/coverImages/${req.file.filename}`
-//     }
-
-//     const updatedSong = await Song.findByIdAndUpdate(id, updatedData, {
-//       new: true,
-//     })
-//     res.status(200).json(updatedSong)
-//   } catch (err) {
-//     res.status(500).json({ error: err.message })
-//   }
-// })
 router.put(
   '/songs/:id',
   upload.fields([{ name: 'audio' }, { name: 'coverImage' }]),

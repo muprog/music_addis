@@ -94,8 +94,8 @@ export default function HomePage() {
               src={
                 song.coverImage
                   ? `${
-                      process.env.BACKEND_URI
-                        ? process.env.BACKEND_URI
+                      process.env.REACT_APP_BACKEND_URI
+                        ? process.env.REACT_APP_BACKEND_URI
                         : 'http://localhost:5000'
                     }/uploads/coverImages/${song.coverImage.replace(
                       /\\/g,
@@ -117,8 +117,8 @@ export default function HomePage() {
                 src={
                   song.audio
                     ? `${
-                        process.env.BACKEND_URI
-                          ? process.env.BACKEND_URI
+                        process.env.REACT_APP_BACKEND_URI
+                          ? process.env.REACT_APP_BACKEND_URI
                           : 'http://localhost:5000'
                       }/uploads/audios/${song.audio.replace(/\\/g, '/')}`
                     : ''
@@ -140,8 +140,8 @@ export default function HomePage() {
             src={
               fullScreenSong.coverImage
                 ? `${
-                    process.env.BACKEND_URI
-                      ? process.env.BACKEND_URI
+                    process.env.REACT_APP_BACKEND_URI
+                      ? process.env.REACT_APP_BACKEND_URI
                       : 'http://localhost:5000'
                   }/uploads/coverImages/${fullScreenSong.coverImage.replace(
                     /\\/g,
@@ -159,8 +159,8 @@ export default function HomePage() {
             src={
               fullScreenSong.audio
                 ? `${
-                    process.env.BACKEND_URI
-                      ? process.env.BACKEND_URI
+                    process.env.REACT_APP_BACKEND_URI
+                      ? process.env.REACT_APP_BACKEND_URI
                       : 'http://localhost:5000'
                   }/uploads/audios/${fullScreenSong.audio.replace(/\\/g, '/')}`
                 : ''

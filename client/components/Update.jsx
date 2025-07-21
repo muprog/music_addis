@@ -196,8 +196,8 @@ const Update = () => {
         {formData.coverImage && (
           <PreviewImage
             src={`${
-              process.env.BACKEND_URI
-                ? process.env.BACKEND_URI
+              process.env.REACT_APP_BACKEND_URI
+                ? process.env.REACT_APP_BACKEND_URI
                 : 'http://localhost:5000'
             }/uploads/coverImages/${formData.coverImage}`}
             alt='cover'
@@ -216,8 +216,8 @@ const Update = () => {
           <AudioPreview controls>
             <source
               src={`${
-                process.env.BACKEND_URI
-                  ? process.env.BACKEND_URI
+                process.env.REACT_APP_BACKEND_URI
+                  ? process.env.REACT_APP_BACKEND_URI
                   : 'http://localhost:5000'
               }/uploads/audios/${formData.audio}`}
               type='audio/mpeg'
